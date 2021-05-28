@@ -22,6 +22,13 @@ RUN git clone --branch ${BRANCH} https://github.com/Chia-Network/chia-blockchain
 && chmod +x install.sh \
 && /usr/bin/sh ./install.sh
 
+# User modifications here
+RUN groupadd chia --gid 1000 && \
+    useradd -ms /bin/bash --uid 1000 --gid 1000 chia && \
+    chown -R chia:chia /chia-blockchain && \
+    mkdir -p "$plots_dir" && \
+    chown -R chia:chia "$plots_dir"
+
 WORKDIR /chia-blockchain
 ADD ./entrypoint.sh entrypoint.sh
 
