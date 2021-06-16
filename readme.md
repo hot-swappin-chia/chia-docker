@@ -5,7 +5,11 @@
 docker run --name <container-name> -d ghcr.io/chia-network/chia:latest
 (optional -v /path/to/plots:/plots)
 ```
-
+#### set the timezone for the container (optional, defaults to UTC)
+Timezones can be configured using the `TZ` env variable. A list of supported time zones can be found [here](http://manpages.ubuntu.com/manpages/focal/man3/DateTime::TimeZone::Catalog.3pm.html)
+```
+-e TZ="America/Chicago"
+```
 ## Configuration
 
 You can modify the behavior of your Chia container by setting specific environment variables.
@@ -30,7 +34,7 @@ To start a farmer only node pass
 
 To start a harvester only node pass
 ```
--e harvester="true" -e farmer_address="addres.of.farmer" -e farmer_port="portnumber"
+-e harvester="true" -e farmer_address="addres.of.farmer" -e farmer_port="portnumber" -v /path/to/ssl/ca:/path/in/container -e ca="/path/in/container" -e keys="copy"
 ```
 
 The `plots_dir` environment variable can be used to specify the directory containing the plots, it supports PATH-style colon-separated directories.
