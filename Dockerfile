@@ -22,6 +22,10 @@ RUN git clone --branch ${BRANCH} https://github.com/Chia-Network/chia-blockchain
 && chmod +x install.sh \
 && /usr/bin/sh ./install.sh
 
+RUN arch="$(dpkg --print-architecture)" && \
+    curl -o /usr/bin/yq -L https://github.com/mikefarah/yq/releases/download/v4.9.6/yq_linux_$arch && \
+    chmod +x /usr/bin/yq
+
 # User modifications here
 RUN groupadd chia --gid 1000 && \
     useradd -ms /bin/bash --uid 1000 --gid 1000 chia && \
