@@ -49,4 +49,6 @@ jobs:
           push: true
           build-args: |
             "BRANCH=${{ github.event.inputs.upstream_branch }}"
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.event.inputs.image_tag }}
+          tags:
+            - ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.event.inputs.image_tag }}
+            - ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
